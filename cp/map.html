@@ -1,1 +1,787 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Map</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
 
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.shuv-home{
+	background-color: black;
+	color : white;
+	padding: 20px;
+	border-radius: 5px;
+}
+	
+</style></head>
+<body>
+
+<a class="shuv-home" href="../index.html">HOME</a>
+
+<h1 id="75738f02-c47a-4ceb-bf6f-cdd2cd5f4801" class="">Intro</h1><p id="b6bec87d-3720-4a74-805a-31f830565dfa" class="">বেসিকালি ম্যাপ হল একই সাথে একটা অ্যারেতে দুই টা ডাটা রাখার উপায়। অনেকটা স্প্রেডশিট / এক্সেলে রো আর কলামে ডাটা রাখার মত। কিন্তু জাস্ট ২ কলাম ডাটাই এখানে রাখা যায়।</p><p id="6a6fb8b5-b4c1-4be6-85cf-268b30820bb9" class="">ম্যাপ একটা জেনেরিক ক্লাস যেখানে বিভিন্ন টাইপের ডাটা একে অন্যের সাথে লিংক করে রাখা যায় যেন একটা ডাটা কল করে অন্য ডাটা পাওয়া যায় একই সাথে। </p><p id="f0a4af95-97c5-4797-a310-c018ceba28e4" class="">ম্যাপ কাজ করে key আর value এর উপর ভিত্তি করে। ম্যাপের প্রথম এলিমেন্ট হল key. আর second element হল value. </p><pre id="7b486625-dd55-4551-80af-78ead8115630" class="code"><code>map &lt;key, value&gt; map_name;</code></pre><p id="723f899a-27fa-4ae3-b962-055fe8871110" class="">ম্যাপের ক্ষেত্রে এর key ধরে সার্চ করা যায়। আর এর ভ্যালুর উপর নানা ধরনের অপারেশন্স করা যায়। </p><table id="3ebd45ab-a609-4094-ae2b-bddf668aa590" class="simple-table"><tbody><tr id="39d1f996-7f12-4d89-bbab-013716f7f9c1"><td id="CTir" class="">key (int)</td><td id="=rd`" class="">value (string)</td></tr><tr id="dba35cac-9bb2-49e8-b4a0-7918c2aa8092"><td id="CTir" class="">1</td><td id="=rd`" class="">abc</td></tr><tr id="021b87f9-a5fb-4cf6-84a4-fa3c5efb61b9"><td id="CTir" class="">2</td><td id="=rd`" class="">vdf</td></tr><tr id="30ae4b72-643c-4385-a28f-0dd860baca6b"><td id="CTir" class="">3</td><td id="=rd`" class="">dbv</td></tr><tr id="0d1a66a8-e8a5-45e8-8f77-8cd1ceac20e7"><td id="CTir" class="">4</td><td id="=rd`" class="">dgbfdb </td></tr><tr id="78ee0e5d-c650-48be-95ae-b7c076bd9390"><td id="CTir" class="">5</td><td id="=rd`" class="">fgbs </td></tr></tbody></table><h1 id="8dd94fba-4d6c-451d-b063-7b56fb493133" class="">Type of Map</h1><h2 id="0d195526-45e4-46ba-8d23-fbe70725ce99" class="">Order-Map</h2><p id="2f97ceb7-6c4b-4d79-9e73-de6cf063a0ff" class="">Normal maps. they store data sorted A → Z in the map on the base of “key” values. It do not matter when I input any value to key. It will be sorted automatically. </p><h2 id="7d21563b-3842-460b-baa0-cb1e86e78a17" class="">Unordered-Map</h2><p id="e0b92b63-987d-42e0-b325-9497ef5a0d31" class="">Unordered Map stores value to the keys as we put them. </p><p id="a2db19a2-58b5-4a29-83be-46d63033da5e" class="">
+</p><h1 id="bb79010b-1d45-4fbd-a997-8dd847e2a04a" class="">Map Codes</h1><h3 id="921a740d-54bd-40a0-aab2-0280250df0d5" class="">Calling a map to code</h3><pre id="4e5e0a80-1cec-4445-8c49-abbe8336d842" class="code"><code>map&lt;int, string&gt; m;</code></pre><p id="15e98136-8c13-4763-9594-f78b970ac5bd" class="">
+</p><h3 id="3cbe6cb8-bde4-43d7-a6e0-6bd02ff0cbf4" class="">Inserting Values to the keys of the Map</h3><p id="a29ab9c2-7ca4-4963-8618-459438c82b1d" class="">we can use array method of calling key’s of the map to insert the value’s. </p><pre id="d758b928-f48b-41e1-98ca-bd0874b463ab" class="code"><code>int main()
+{
+    map&lt;int, string&gt; m;
+    m[1] = &quot;Adib&quot;;
+    m[2] = &quot;Sakhawat&quot;;
+    m[3] = &quot;SHuvro&quot;;
+}</code></pre><p id="0afcd25a-a43b-4fa5-b832-b5f6362368a7" class="">Another way is to use <a href="https://www.notion.so/pair-83e2da91e3a34420bc02324c4c7171c8">pairs</a></p><pre id="57127e77-b8b2-4e01-96d5-90f3b9a9a53a" class="code"><code>m.insert({4,&quot;Bareen&quot;});</code></pre><p id="b210b568-70cf-4a5b-8a6d-9a9b31268985" class="">
+</p><h3 id="27e45a12-e0f4-4963-90c3-5d222403988e" class="">Iterating over the keys of the map</h3><pre id="798faa1a-a435-4c9f-bfe5-97054ba63785" class="code"><code>map&lt;int, string&gt; m;
+m[1] = &quot;Adib&quot;;
+m[5] = &quot;Sakhawat&quot;;
+m[3] = &quot;Shuvro&quot;;
+
+m.insert({4,&quot;Bareen&quot;});
+
+//The part to itarate over the map
+
+map&lt;int, string&gt; :: iterator it;  //#1
+for(it = m.begin(); it != m.end(); ++it)  //#2
+{
+    cout &lt;&lt; (*it).first &lt;&lt; &quot; &quot; &lt;&lt; (*it).second &lt;&lt; endl;
+}</code></pre><p id="fa13f70d-0038-4cdb-915c-cfd2819e8bdd" class="">A lot to explain….</p><p id="b2987c2f-81ec-48ed-ba94-885dcc8d647c" class="">in the <code>#1</code> section we create an iterator over the full map that can iterate on it. we call it “it”. </p><p id="b36db409-b4c0-43b5-baa4-c07064602bc5" class="">in the <code>#2</code> section we created a for loop that iterates over the map and picks each data for us to modify or do whatever we want to do. </p><p id="19ce921a-2b5a-4068-a0e2-2b501ee0454f" class="">normally map is used to call on a data by the key value. It saves time and effort of the computer over iterating for linear or binary or any kind of search for a single data. </p><p id="1c14eca7-31cf-4dcb-a2f9-a87370d6744b" class="">
+</p><h2 id="ee1c65c3-8adb-4f74-8ffd-b1d14af3f2cd" class="">Practice Problem</h2><pre id="744c7f54-592b-40d4-b121-c7de34c276d3" class="code"><code>Leetcode - 13:
+
+Roman numerals are represented by seven different 
+symbols: I, V, X, L, C, D and M.
+
+Symbol       Value
+I             1
+V             5
+X             10
+L             50
+C             100
+D             500
+M             1000
+
+For example, 2 is written as II in Roman numeral, 
+just two ones added together. 12 is written as XII,
+ which is simply X + II. The number 27 is written as 
+XXVII, which is XX + V + II.
+
+Roman numerals are usually written largest to smallest 
+from left to right. However, the numeral for four is not 
+IIII. Instead, the number four is written as IV. Because 
+the one is before the five we subtract it making four. The 
+same principle applies to the number nine, which is written 
+as IX. There are six instances where subtraction is used:
+
+I can be placed before V (5) and X (10) to make 4 and 9. 
+X can be placed before L (50) and C (100) to make 40 and 90. 
+C can be placed before D (500) and M (1000) to make 400 and 900.
+Given a roman numeral, convert it to an integer.</code></pre><h3 id="007f0dad-1250-4cce-9b45-1d4fd37bb711" class="">Solution</h3><pre id="95728f42-9e91-4427-bf64-0054a8256e6c" class="code"><code>#include&lt;bits/stdc++.h&gt;
+using namespace std;
+
+int romanToInt(string s) {
+        map&lt;char, int&gt; m;
+        m[&#x27;I&#x27;] = 1;
+        m[&#x27;V&#x27;] = 5;
+        m[&#x27;X&#x27;] = 10;
+        m[&#x27;L&#x27;] = 50;
+        m[&#x27;C&#x27;] = 100;
+        m[&#x27;D&#x27;] = 500;
+        m[&#x27;M&#x27;] = 1000;
+
+        int sum = m[s[s.length()-1]];
+        //cout &lt;&lt; s.length()-1 &lt;&lt; &quot; &quot; &lt;&lt; sum &lt;&lt; endl;
+        int prev = sum;
+        //cout &lt;&lt; &quot;prev - &quot; &lt;&lt; prev &lt;&lt; endl;
+        for(int i = (s.length()-2); i&gt;=0; i--)
+        {
+            if(m[s[i]] &lt; prev)
+            {
+                sum = sum - m[s[i]];
+                prev = m[s[i]];
+            }
+            else
+            {
+                sum = sum + m[s[i]];
+                prev = m[s[i]];
+            }
+            //cout &lt;&lt; i &lt;&lt; &quot; &quot; &lt;&lt; sum &lt;&lt; &quot; &quot; &lt;&lt; prev &lt;&lt; endl; 
+        }
+
+        return sum;
+    }
+
+int main()
+{
+    
+    string s;
+    cin &gt;&gt; s;
+    while(s != &quot;0&quot;)
+    {
+        int q = romanToInt(s);
+        cout &lt;&lt; q &lt;&lt; endl;
+        cin &gt;&gt; s;
+    }
+    
+    return 0;
+}</code></pre><p id="5e5ca7d5-eec1-4fca-bb7e-7d8666d1da5d" class="">
+</p><p id="8a92fb39-6079-4b64-94f7-0d7776d0cb4c" class="">🗑️<a href="https://leetcode.com/submissions/detail/959157288/">LeetCode Solution Page</a></p><p id="40e06a2f-76b4-4477-9b88-172f65a8aea4" class="">
+</p></div></article></body></html>
