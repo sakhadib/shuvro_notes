@@ -107,7 +107,7 @@ li, a, button, .butt{
   
   table {
     /* align-items: center; */
-    /* border-collapse: collapse; */
+    border-collapse: collapse;
     width: 100%;
     margin-left: auto;
     margin-right: auto;

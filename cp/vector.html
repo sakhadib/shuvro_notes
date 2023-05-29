@@ -687,7 +687,7 @@
             <section style="all: initial">
                 <!-- header start -->
                 <header class = "header">
-                    <img src="../1.png" alt="Demo Logo" >
+                    <a href="../index.html"><img src="../1.png" alt="Demo Logo" ></a>
                     <nav>
                         <ul class = "nav_links" style="display: inline-block;"> 
                             <li><a href="../index.html">Home</a></li>
@@ -698,7 +698,9 @@
                 </header>
                 <!-- Header End -->
             </section>
-            <h1 id="af6d125c-7544-4b9d-89d2-d3a0d70b60fd" class="">General Properties</h1><ul id="78e0c675-8a1b-44d9-855d-56b756118443" class="bulleted-list"><li style="list-style-type:disc">vector is a dynamic type of array</li></ul><ul id="92a275f0-b495-405f-af4b-3d2efc7efc33" class="bulleted-list"><li style="list-style-type:disc">Allocates memory on runtime dynamically</li></ul><ul id="f17e4f88-cf12-40ce-95dc-b30a532c57ba" class="bulleted-list"><li style="list-style-type:disc">Solves the problem of array to be the fixed in size</li></ul><ul id="82477d36-d985-4351-bc31-9d416e356ae2" class="bulleted-list"><li style="list-style-type:disc">It is a static generic class for any datatype. </li></ul><ul id="473bdd2e-d7a0-4274-89f9-3452e891a606" class="bulleted-list"><li style="list-style-type:disc">You have to add <code>#include&lt;vector&gt;</code> to your file</li></ul><ul id="e8b17a98-daef-4ffc-8dc5-f84326ea2267" class="bulleted-list"><li style="list-style-type:disc">stores data in continuous memory block.</li></ul><h1 id="ef4871c4-b1a0-4e11-8dc0-e509c2da962c" class="">Declaration of vector</h1><pre id="adc48d18-500f-46c4-81a7-bdf56ce69c8a" class="code"><code>//vector&lt;type&gt; vector_name;
+
+            <h1 id="af6d125c-7544-4b9d-89d2-d3a0d70b60fd" class="">Vector : c++ <br> <br>General Properties</h1>
+            <ul id="78e0c675-8a1b-44d9-855d-56b756118443" class="bulleted-list"><li style="list-style-type:disc">vector is a dynamic type of array</li></ul><ul id="92a275f0-b495-405f-af4b-3d2efc7efc33" class="bulleted-list"><li style="list-style-type:disc">Allocates memory on runtime dynamically</li></ul><ul id="f17e4f88-cf12-40ce-95dc-b30a532c57ba" class="bulleted-list"><li style="list-style-type:disc">Solves the problem of array to be the fixed in size</li></ul><ul id="82477d36-d985-4351-bc31-9d416e356ae2" class="bulleted-list"><li style="list-style-type:disc">It is a static generic class for any datatype. </li></ul><ul id="473bdd2e-d7a0-4274-89f9-3452e891a606" class="bulleted-list"><li style="list-style-type:disc">You have to add <code>#include&lt;vector&gt;</code> to your file</li></ul><ul id="e8b17a98-daef-4ffc-8dc5-f84326ea2267" class="bulleted-list"><li style="list-style-type:disc">stores data in continuous memory block.</li></ul><h1 id="ef4871c4-b1a0-4e11-8dc0-e509c2da962c" class="">Declaration of vector</h1><pre id="adc48d18-500f-46c4-81a7-bdf56ce69c8a" class="code"><code>//vector&lt;type&gt; vector_name;
         vector&lt;int&gt; v;</code></pre><h1 id="5cb53303-bdb1-42b9-a8f9-a904bcc743ee" class="">Using member functions</h1><blockquote id="35ede78a-2adc-4642-9c78-ebac3a48eb8c" class="">First we need a function to print the vectors easily anytime. </blockquote><pre id="2b9a56f5-3b91-4e50-854a-fd08c9948007" class="code"><code>void print_container(const std::vector&lt;int&gt;&amp; c) 
     {
         for (int i =0; i&lt;c.size(); i++)
