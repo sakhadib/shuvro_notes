@@ -699,50 +699,55 @@
                 <!-- Header End -->
             </section>
 
-            <h1 id="af6d125c-7544-4b9d-89d2-d3a0d70b60fd" class="">Vector : c++ <br> <br>General Properties</h1>
-            <ul id="78e0c675-8a1b-44d9-855d-56b756118443" class="bulleted-list"><li style="list-style-type:disc">vector is a dynamic type of array</li></ul><ul id="92a275f0-b495-405f-af4b-3d2efc7efc33" class="bulleted-list"><li style="list-style-type:disc">Allocates memory on runtime dynamically</li></ul><ul id="f17e4f88-cf12-40ce-95dc-b30a532c57ba" class="bulleted-list"><li style="list-style-type:disc">Solves the problem of array to be the fixed in size</li></ul><ul id="82477d36-d985-4351-bc31-9d416e356ae2" class="bulleted-list"><li style="list-style-type:disc">It is a static generic class for any datatype. </li></ul><ul id="473bdd2e-d7a0-4274-89f9-3452e891a606" class="bulleted-list"><li style="list-style-type:disc">You have to add <code>#include&lt;vector&gt;</code> to your file</li></ul><ul id="e8b17a98-daef-4ffc-8dc5-f84326ea2267" class="bulleted-list"><li style="list-style-type:disc">stores data in continuous memory block.</li></ul><h1 id="ef4871c4-b1a0-4e11-8dc0-e509c2da962c" class="">Declaration of vector</h1><pre id="adc48d18-500f-46c4-81a7-bdf56ce69c8a" class="code"><code>//vector&lt;type&gt; vector_name;
-        vector&lt;int&gt; v;</code></pre><h1 id="5cb53303-bdb1-42b9-a8f9-a904bcc743ee" class="">Using member functions</h1><blockquote id="35ede78a-2adc-4642-9c78-ebac3a48eb8c" class="">First we need a function to print the vectors easily anytime. </blockquote><pre id="2b9a56f5-3b91-4e50-854a-fd08c9948007" class="code"><code>void print_container(const std::vector&lt;int&gt;&amp; c) 
-    {
-        for (int i =0; i&lt;c.size(); i++)
-            std::cout &lt;&lt; c[i] &lt;&lt; &quot; &quot;;
-        std::cout &lt;&lt; &#x27;\n&#x27;;
-    }</code></pre><p id="67b1b93e-94ff-42f8-b073-ffc3913a2789" class="">now when we may need printing we can call this function for help. </p><p id="d88e0f5b-3778-49e0-a0f3-317860ccc6bd" class="">
-    </p><h2 id="52e6c2d2-acb2-4984-8f7f-6aca4f845123" class="">Adding element to vector</h2><pre id="9e3d361e-b0b2-4090-9048-f8c3b5b5dc77" class="code"><code>//using push_back method
-    
-    vector&lt;int&gt; v;
-    v.push_back(1);
-    v.push_back(4);
-    v.push_back(9);
-    v.push_back(2);
-    v.push_back(7);
-    v.push_back(14);
-    
-    print_container(v);
-    
-    //Output : 1 4 9 2 7 14</code></pre><h2 id="41760ae3-b849-4264-920b-d0d6363df360" class="">Traversing in the vector</h2><h3 id="65fddc88-c288-4024-ade6-23827705bd31" class="">#1 : using index numbers</h3><pre id="e91cb6b4-d05b-4fe0-9d95-3d6925a9a06b" class="code"><code>for (int i = 0; i&lt;v.size(); i++)
-            std::cout &lt;&lt; v[i] &lt;&lt; &quot; &quot;;</code></pre><h3 id="b06b5a1f-ade3-4522-ab2e-4578f8b11382" class="">#2 : using iterator (pointer)</h3><pre id="e8788735-b79e-4306-8202-cd84fd01e3e2" class="code"><code>vector&lt;int&gt;::iterator it;
-        for(it = v.begin(); it != v.end(); it++)
+            <section style="all: initial">
+                <h1 id="af6d125c-7544-4b9d-89d2-d3a0d70b60fd" class="">Vector : c++ <br> <br>General Properties</h1>
+                <ul id="78e0c675-8a1b-44d9-855d-56b756118443" class="bulleted-list"><li style="list-style-type:disc">vector is a dynamic type of array</li></ul><ul id="92a275f0-b495-405f-af4b-3d2efc7efc33" class="bulleted-list"><li style="list-style-type:disc">Allocates memory on runtime dynamically</li></ul><ul id="f17e4f88-cf12-40ce-95dc-b30a532c57ba" class="bulleted-list"><li style="list-style-type:disc">Solves the problem of array to be the fixed in size</li></ul><ul id="82477d36-d985-4351-bc31-9d416e356ae2" class="bulleted-list"><li style="list-style-type:disc">It is a static generic class for any datatype. </li></ul><ul id="473bdd2e-d7a0-4274-89f9-3452e891a606" class="bulleted-list"><li style="list-style-type:disc">You have to add <code>#include&lt;vector&gt;</code> to your file</li></ul><ul id="e8b17a98-daef-4ffc-8dc5-f84326ea2267" class="bulleted-list"><li style="list-style-type:disc">stores data in continuous memory block.</li></ul><h1 id="ef4871c4-b1a0-4e11-8dc0-e509c2da962c" class="">Declaration of vector</h1><pre id="adc48d18-500f-46c4-81a7-bdf56ce69c8a" class="code"><code>//vector&lt;type&gt; vector_name;
+            vector&lt;int&gt; v;</code></pre><h1 id="5cb53303-bdb1-42b9-a8f9-a904bcc743ee" class="">Using member functions</h1><blockquote id="35ede78a-2adc-4642-9c78-ebac3a48eb8c" class="">First we need a function to print the vectors easily anytime. </blockquote><pre id="2b9a56f5-3b91-4e50-854a-fd08c9948007" class="code"><code>void print_container(const std::vector&lt;int&gt;&amp; c) 
         {
-            cout &lt;&lt; *it &lt;&lt; &quot; &quot;; //it is a pointer. so treat like one
-        }</code></pre><h3 id="d454c321-9357-4f16-874a-d8f9e0375473" class="">#3 : using foreach loop</h3><pre id="59c8d7ca-411c-4891-bc02-60a44521d0a7" class="code"><code>for(auto element : v)
-            cout &lt;&lt; element &lt;&lt; &quot; &quot;;</code></pre><h2 id="be2dda88-83b7-4acf-9286-776bfc9fdc7f" class="">Accessing Elements</h2><h3 id="8fb4d29f-9e44-4a72-9a51-2aabb36ea860" class="">v.at(n)</h3><pre id="b349ef6a-e566-4ef1-a11f-c0b3d1968e6d" class="code"><code>// v.at(n) returns the nth index number
-        q = v.at(2);
-        cout &lt;&lt; q &lt;&lt;endl;      //output : 9</code></pre><h3 id="cfb67f78-affb-46e0-9e42-981eca4be3b0" class="">v.front()</h3><pre id="5af197d7-39ae-4f87-add3-255b66e9a7e4" class="code"><code>// v.front()  returns the 1st index item
-        q = v.front();
-        cout &lt;&lt; q &lt;&lt;endl;      //output : 1</code></pre><h3 id="1150ee87-d163-4487-9270-cdfb83e886d3" class="">v.back()</h3><pre id="0ff1db29-94b7-4188-b0c1-dcde3a19ced1" class="code"><code>// v.back()  returns the last index item
-        q = v.back();
-        cout &lt;&lt; q &lt;&lt;endl;      //output : 14</code></pre><h3 id="a2cc280b-763d-482b-998c-8681f558c8eb" class="">v.data()</h3><pre id="1b96f914-5fd8-471e-babb-5cebab57a94e" class="code"><code>//v.data()  returns the array pointer of the first item
-    int *s = v.data();
-    cout &lt;&lt; &quot;mem : &quot; &lt;&lt; s &lt;&lt;endl;      //output : memory address
-    cout &lt;&lt; &quot;val : &quot; &lt;&lt; *s &lt;&lt;endl;      //output : first value</code></pre><h2 id="c9ec3b32-ed8a-4718-9f5f-1c5c7be74bc8" class="">Checkers</h2><h3 id="cdac9025-a03f-4a8b-8a5c-3cf5221d1465" class="">v.empty()</h3><pre id="39402418-d7e4-42a0-aa59-d101ec4a3b03" class="code"><code>//returns 1 if the vector is empty.
-    bool is_empty = v.empty();
-    cout &lt;&lt; is_empty &lt;&lt; endl;       //output : 0 (false)</code></pre><h3 id="d0168c10-953f-4e65-9e32-e8085fab922d" class="">v.size()</h3><pre id="194771ca-81d9-482e-8ae9-f65c5e6e4b44" class="code"><code>int m = v.size();
-    cout &lt;&lt; m &lt;&lt; endl;          //output : 6</code></pre><h2 id="b6db63cf-b160-4222-8937-41b0197a3b70" class="">Modifiers</h2><h3 id="62d75e1e-3342-4efd-90fa-2552e5c6422e" class="">v.erase()</h3><p id="338f340f-487e-411d-9b4d-a8581194735b" class="">it can erase any selected element from the vector.</p><blockquote id="ae41823c-03ad-48e0-bb8e-0cd61f79a2a2" class="">Erasing all the odd numbers from vector v</blockquote><pre id="0d0007de-4561-4146-84e4-face3922710d" class="code"><code>for (std::vector&lt;int&gt;::iterator it = v.begin(); it != v.end();)
-    {
-        if (*it % 2 == 0)
-            it = v.erase(it);
-        else
-            ++it;
-    }
-    print_container(v);         //output : 1 9 5 7</code></pre><h3 id="42abec66-6ef2-4f38-b89e-5eea7c33b631" class="">v.clear()</h3><p id="8f093ae2-953c-4612-96a6-a742593d7a7a" class="">it clears away all the elements of the vector</p><pre id="20013232-3ac1-4448-b3ae-0a4bf7179bf4" class="code"><code>v.clear();
-    print_container(v);         //output : [nothing]</code></pre></div></article></body></html>
+            for (int i =0; i&lt;c.size(); i++)
+                std::cout &lt;&lt; c[i] &lt;&lt; &quot; &quot;;
+            std::cout &lt;&lt; &#x27;\n&#x27;;
+        }</code></pre><p id="67b1b93e-94ff-42f8-b073-ffc3913a2789" class="">now when we may need printing we can call this function for help. </p><p id="d88e0f5b-3778-49e0-a0f3-317860ccc6bd" class="">
+        </p><h2 id="52e6c2d2-acb2-4984-8f7f-6aca4f845123" class="">Adding element to vector</h2><pre id="9e3d361e-b0b2-4090-9048-f8c3b5b5dc77" class="code"><code>//using push_back method
+        
+        vector&lt;int&gt; v;
+        v.push_back(1);
+        v.push_back(4);
+        v.push_back(9);
+        v.push_back(2);
+        v.push_back(7);
+        v.push_back(14);
+        
+        print_container(v);
+        
+        //Output : 1 4 9 2 7 14</code></pre><h2 id="41760ae3-b849-4264-920b-d0d6363df360" class="">Traversing in the vector</h2><h3 id="65fddc88-c288-4024-ade6-23827705bd31" class="">#1 : using index numbers</h3><pre id="e91cb6b4-d05b-4fe0-9d95-3d6925a9a06b" class="code"><code>for (int i = 0; i&lt;v.size(); i++)
+                std::cout &lt;&lt; v[i] &lt;&lt; &quot; &quot;;</code></pre><h3 id="b06b5a1f-ade3-4522-ab2e-4578f8b11382" class="">#2 : using iterator (pointer)</h3><pre id="e8788735-b79e-4306-8202-cd84fd01e3e2" class="code"><code>vector&lt;int&gt;::iterator it;
+            for(it = v.begin(); it != v.end(); it++)
+            {
+                cout &lt;&lt; *it &lt;&lt; &quot; &quot;; //it is a pointer. so treat like one
+            }</code></pre><h3 id="d454c321-9357-4f16-874a-d8f9e0375473" class="">#3 : using foreach loop</h3><pre id="59c8d7ca-411c-4891-bc02-60a44521d0a7" class="code"><code>for(auto element : v)
+                cout &lt;&lt; element &lt;&lt; &quot; &quot;;</code></pre><h2 id="be2dda88-83b7-4acf-9286-776bfc9fdc7f" class="">Accessing Elements</h2><h3 id="8fb4d29f-9e44-4a72-9a51-2aabb36ea860" class="">v.at(n)</h3><pre id="b349ef6a-e566-4ef1-a11f-c0b3d1968e6d" class="code"><code>// v.at(n) returns the nth index number
+            q = v.at(2);
+            cout &lt;&lt; q &lt;&lt;endl;      //output : 9</code></pre><h3 id="cfb67f78-affb-46e0-9e42-981eca4be3b0" class="">v.front()</h3><pre id="5af197d7-39ae-4f87-add3-255b66e9a7e4" class="code"><code>// v.front()  returns the 1st index item
+            q = v.front();
+            cout &lt;&lt; q &lt;&lt;endl;      //output : 1</code></pre><h3 id="1150ee87-d163-4487-9270-cdfb83e886d3" class="">v.back()</h3><pre id="0ff1db29-94b7-4188-b0c1-dcde3a19ced1" class="code"><code>// v.back()  returns the last index item
+            q = v.back();
+            cout &lt;&lt; q &lt;&lt;endl;      //output : 14</code></pre><h3 id="a2cc280b-763d-482b-998c-8681f558c8eb" class="">v.data()</h3><pre id="1b96f914-5fd8-471e-babb-5cebab57a94e" class="code"><code>//v.data()  returns the array pointer of the first item
+        int *s = v.data();
+        cout &lt;&lt; &quot;mem : &quot; &lt;&lt; s &lt;&lt;endl;      //output : memory address
+        cout &lt;&lt; &quot;val : &quot; &lt;&lt; *s &lt;&lt;endl;      //output : first value</code></pre><h2 id="c9ec3b32-ed8a-4718-9f5f-1c5c7be74bc8" class="">Checkers</h2><h3 id="cdac9025-a03f-4a8b-8a5c-3cf5221d1465" class="">v.empty()</h3><pre id="39402418-d7e4-42a0-aa59-d101ec4a3b03" class="code"><code>//returns 1 if the vector is empty.
+        bool is_empty = v.empty();
+        cout &lt;&lt; is_empty &lt;&lt; endl;       //output : 0 (false)</code></pre><h3 id="d0168c10-953f-4e65-9e32-e8085fab922d" class="">v.size()</h3><pre id="194771ca-81d9-482e-8ae9-f65c5e6e4b44" class="code"><code>int m = v.size();
+        cout &lt;&lt; m &lt;&lt; endl;          //output : 6</code></pre><h2 id="b6db63cf-b160-4222-8937-41b0197a3b70" class="">Modifiers</h2><h3 id="62d75e1e-3342-4efd-90fa-2552e5c6422e" class="">v.erase()</h3><p id="338f340f-487e-411d-9b4d-a8581194735b" class="">it can erase any selected element from the vector.</p><blockquote id="ae41823c-03ad-48e0-bb8e-0cd61f79a2a2" class="">Erasing all the odd numbers from vector v</blockquote><pre id="0d0007de-4561-4146-84e4-face3922710d" class="code"><code>for (std::vector&lt;int&gt;::iterator it = v.begin(); it != v.end();)
+        {
+            if (*it % 2 == 0)
+                it = v.erase(it);
+            else
+                ++it;
+        }
+        print_container(v);         //output : 1 9 5 7</code></pre><h3 id="42abec66-6ef2-4f38-b89e-5eea7c33b631" class="">v.clear()</h3><p id="8f093ae2-953c-4612-96a6-a742593d7a7a" class="">it clears away all the elements of the vector</p><pre id="20013232-3ac1-4448-b3ae-0a4bf7179bf4" class="code"><code>v.clear();
+        print_container(v);         //output : [nothing]</code></pre></div></article>
+            </section>
+
+ </body>
+ </html>
